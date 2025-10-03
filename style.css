@@ -1,0 +1,108 @@
+/* Custom font for Burmese readability (Unicode support is assumed) */
+@import url('https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&display=swap');
+
+:root {
+    --primary-blue: #2563EB; /* Blue-600 */
+}
+
+body {
+    font-family: 'Padauk', sans-serif;
+    background-color: #ffffff;
+    padding-top: 68px; /* Closer to header height on mobile */
+    font-size: 16px;
+}
+ 
+@media (min-width: 768px) {
+    body {
+        padding-top: 76px; /* Closer to header height on desktop */
+    }
+}
+
+/* Fixed Header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+}
+ 
+/* Spacing and Typography Adjustments */
+.header-spacing {
+    margin-bottom: 3rem;
+}
+
+/* 6:5 Ratio Styling (Width: 6, Height: 5) */
+.ratio-6-5-wrapper {
+    width: 100%;
+    /* Height is 5/6 (83.33%) of width */
+    padding-top: calc(5 / 6 * 100%); 
+    position: relative; /* Needed for absolute positioning of slides */
+}
+
+.ratio-6-5-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+ 
+/* Carousel Slide Styling */
+.slide-image {
+    width: 100%;
+    height: 100%;
+    position: absolute; /* Stack images */
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+    object-fit: cover;
+}
+.slide-image.active {
+    opacity: 1;
+}
+
+/* Indicator style */
+.dot {
+    height: 10px;
+    width: 10px;
+    margin: 0 4px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+    cursor: pointer;
+}
+.dot.active {
+    background-color: var(--primary-blue);
+}
+
+/* --- Ripple Effect CSS --- */
+.ripple-button {
+    position: relative;
+    overflow: hidden;
+    transform: translate3d(0, 0, 0);
+}
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--primary-blue);
+    border-radius: 4px;
+}
